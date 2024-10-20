@@ -1,4 +1,4 @@
-package com.ani.mybatis.model
+package com.ani.mybatis.domain.model
 
 data class Club(
     val id: Long,
