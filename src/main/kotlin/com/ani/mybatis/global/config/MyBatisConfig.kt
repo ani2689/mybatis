@@ -19,20 +19,23 @@ import org.apache.ibatis.session.Configuration as SessionConfiguration
 )
 class MyBatisConfig {
     @Bean
-    fun sqlSessionFactory(): SqlSessionFactory =
-        SqlSessionFactoryBean().apply {
-            val dataSource = DataSourceBuilder.create().apply {
-                url("localhost:3306")
-                username("root")
-                password("1234")
-                driverClassName("com.mysql.cj.jdbc.Driver")
-            }.build()
+    fun sqlSessionFactory(): SqlSessionFactory {
+        val dataSource = DataSourceBuilder.create().apply {
+            url("localhost:3306")
+            username("root")
+            password("1234")
+            driverClassName("com.mysql.cj.jdbc.Driver")
+        }.build()
 
-            val configuration = SessionConfiguration().apply {
-                isMapUnderscoreToCamelCase = true
-            }
+        val configuration = SessionConfiguration().apply {
+            isMapUnderscoreToCamelCase = true
+        }
 
+        val sqlSessionFactory = SqlSessionFactoryBean().apply {
             setDataSource(dataSource)
             setConfiguration(configuration)
         }.`object`!!
+
+        return sqlSessionFactory
+    }
 }
