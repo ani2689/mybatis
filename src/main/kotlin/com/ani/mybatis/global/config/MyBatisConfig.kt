@@ -26,7 +26,7 @@ class MyBatisConfig {
     @Bean
     fun sqlSessionFactory(): SqlSessionFactory {
         val dataSource = DataSourceBuilder.create().apply {
-            url("localhost:3306")
+            url("jdbc:mysql://localhost:3306/mybatis")
             username("root")
             password("1234")
             driverClassName("com.mysql.cj.jdbc.Driver")
