@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ani.mybatis.domain.mapper.ClubMapper">
+    <select id="clubsByUser" resultType="com.ani.mybatis.domain.model.Club">
+        SELECT *
+        FROM club, user, member
+        WHERE club.id = member.club_id AND user.id = member.user_id
+    </select>
+
+    <insert id="createUser">
+        INSERT INTO user (name) VALUE #{name}
+    </insert>
+</mapper>
