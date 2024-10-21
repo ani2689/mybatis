@@ -7,6 +7,7 @@ import org.mybatis.spring.annotation.MapperScan
 import org.springframework.boot.jdbc.DataSourceBuilder
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver
 import org.apache.ibatis.session.Configuration as SessionConfiguration
 
 @Configuration
@@ -18,6 +19,10 @@ import org.apache.ibatis.session.Configuration as SessionConfiguration
     sqlSessionFactoryRef = "sqlSessionFactory"
 )
 class MyBatisConfig {
+
+    companion object {
+        const val MAPPER_LOCATIONS = "classpath*:mybatis/*.xml"
+    }
     @Bean
     fun sqlSessionFactory(): SqlSessionFactory {
         val dataSource = DataSourceBuilder.create().apply {
@@ -31,9 +36,12 @@ class MyBatisConfig {
             isMapUnderscoreToCamelCase = true
         }
 
+        val mapperLocations = PathMatchingResourcePatternResolver().getResources(MAPPER_LOCATIONS)
+
         val sqlSessionFactory = SqlSessionFactoryBean().apply {
             setDataSource(dataSource)
             setConfiguration(configuration)
+            setMapperLocations(*mapperLocations)
         }.`object`!!
 
         return sqlSessionFactory
