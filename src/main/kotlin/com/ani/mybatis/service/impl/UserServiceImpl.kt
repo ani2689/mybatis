@@ -11,5 +11,5 @@ class UserServiceImpl(
 ) : UserService {
     override fun createUser(name: String) = userMapper.createUser(name)
 
-    override fun queryUsersByClub(clubId: Long): List<User> = userMapper.users()
+    override fun queryUsersByClub(clubId: Long): List<User> = userMapper.usersByClub(clubId)
 }

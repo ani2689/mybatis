@@ -15,5 +15,5 @@ class ClubServiceImpl(
 
     override fun queryClubs(): List<Club> = clubMapper.clubs()
 
-    override fun queryClubsByUser(userId: Long): List<Club> = clubMapper.clubsByUser()
+    override fun queryClubsByUser(userId: Long): List<Club> = clubMapper.clubsByUser(userId)
 }

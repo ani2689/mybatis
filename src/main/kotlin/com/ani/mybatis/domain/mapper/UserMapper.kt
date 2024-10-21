@@ -5,6 +5,6 @@ import com.ani.mybatis.global.annotation.MyBatisMapper
 
 @MyBatisMapper
 interface UserMapper {
-    fun users(): List<User>
+    fun usersByClub(clubId: Long): List<User>
     fun createUser(name: String)
 }

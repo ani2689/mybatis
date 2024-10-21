@@ -6,7 +6,7 @@ import com.ani.mybatis.global.annotation.MyBatisMapper
 @MyBatisMapper
 interface ClubMapper {
     fun clubs(): List<Club>
-    fun clubsByUser(): List<Club>
+    fun clubsByUser(userId: Long): List<Club>
     fun createClub(name: String)
     fun signupClub(id: Long, userId: Long)
 }
